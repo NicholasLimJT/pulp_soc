@@ -974,4 +974,6 @@ module pulp_soc import dm::*; #(
        slave_valid <= slave_grant;
      end
    end
+
+   dummy_top i_dummy_top();
 endmodule

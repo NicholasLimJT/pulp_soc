@@ -33,6 +33,8 @@ dependencies:
   riscv-dbg:              { git: "https://github.com/pulp-platform/riscv-dbg.git", version: 0.5.0 }
   register_interface:     { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.1 }
 
+  dummy_vip:              { git: "https://github.com/yousefjoe175/dummy_vip.git", rev: "7c10dafd60ff65c1ec160d1091a96f12b276049c" }
+
 sources:
   # pulp_soc
   - include_dirs:
