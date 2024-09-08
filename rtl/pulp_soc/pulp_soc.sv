@@ -975,5 +975,6 @@ module pulp_soc import dm::*; #(
      end
    end
 
-   dummy_top i_dummy_top();
+   dummy_vip i_dummy_vip();
+
 endmodule
