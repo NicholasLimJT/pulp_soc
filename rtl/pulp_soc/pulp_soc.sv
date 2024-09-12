@@ -817,9 +817,21 @@ module pulp_soc import dm::*; #(
     .axi_lite_peripheral_bus ( s_periph_bus        ),
     .l2_interleaved_slaves   ( s_mem_l2_bus        ),
     .l2_private_slaves       ( s_mem_l2_pri_bus    ),
-    .boot_rom_slave          ( s_mem_rom_bus       )
+    .boot_rom_slave          ( s_mem_rom_bus       ),
+    .wide_alu_slave          ( s_wide_alu_bus      )
   );
 
+  wide_alu_top #(
+    .AXI_ADDR_WIDTH ( AXI_ADDR_WIDTH    ),
+    .AXI_ID_WIDTH   ( AXI_ID_OUT_WIDTH  ),
+    .AXI_USER_WIDTH ( AXI_USER_WIDTH    )
+  ) i_wide_alu (
+    .clk_i          ( soc_clk_i         ),
+    .rst_ni         ( soc_rstn_synced_i ),
+    .test_mode_i    ( dft_test_mode_i   ),
+    .axi_slave      ( s_wide_alu_bus    )
+  );
+  
   /* Debug Subsystem */
 
   dmi_jtag #(
