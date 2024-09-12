@@ -56,7 +56,7 @@ module soc_interconnect_wrap
      AXI_LITE.Master          axi_lite_peripheral_bus,            // Connects to all the SoC Peripherals
      XBAR_TCDM_BUS.Master     l2_interleaved_slaves[NR_L2_PORTS], // Connects to the interleaved memory banks
      XBAR_TCDM_BUS.Master     l2_private_slaves[2],               // Connects to core-private memory banks
-     XBAR_TCDM_BUS.Master     boot_rom_slave                      // Connects to the bootrom
+     XBAR_TCDM_BUS.Master     boot_rom_slave,                     // Connects to the bootrom
      AXI_BUS.Master           wide_alu_slave                      // MY WIDE ALU IP
    );
 
@@ -126,7 +126,7 @@ module soc_interconnect_wrap
   localparam NR_RULES_AXI_CROSSBAR = 3;
   localparam addr_map_rule_t [NR_RULES_AXI_CROSSBAR-1:0] AXI_CROSSBAR_RULES = '{
     '{ idx: 0, start_addr: `SOC_MEM_MAP_AXI_PLUG_START_ADDR,    end_addr: `SOC_MEM_MAP_AXI_PLUG_END_ADDR},
-    '{ idx: 1, start_addr: `SOC_MEM_MAP_PERIPHERALS_START_ADDR, end_addr: `SOC_MEM_MAP_PERIPHERALS_END_ADDR}};
+    '{ idx: 1, start_addr: `SOC_MEM_MAP_PERIPHERALS_START_ADDR, end_addr: `SOC_MEM_MAP_PERIPHERALS_END_ADDR},
     '{ idx: 2, start_addr: `SOC_MEM_MAP_WIDE_ALU_START_ADDR, end_addr: `SOC_MEM_MAP_WIDE_ALU_END_ADDR}};
 
   //For legacy reasons, the fc_data port can alias the address prefix 0x000 to 0x1c0. E.g. an access to 0x00001234 is
@@ -193,10 +193,10 @@ module soc_interconnect_wrap
     .AXI_ID_WIDTH   ( pkg_soc_interconnect::AXI_ID_OUT_WIDTH ),
     .AXI_USER_WIDTH ( AXI_USER_WIDTH                         )
   ) axi_slaves[3]();
-  //increased to 3 as there are 3 slaves
+
   `AXI_ASSIGN(axi_slave_plug, axi_slaves[0])
   `AXI_ASSIGN(axi_to_axi_lite_bridge, axi_slaves[1])
-  `AXI_ASSIGN(wide_alu_slave, axi_slaves[2])//added for wide_alu implementation
+  `AXI_ASSIGN(wide_alu_slave, axi_slaves[2])
 
   //Interconnect instantiation
   soc_interconnect #(

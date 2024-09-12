@@ -402,7 +402,7 @@ module pulp_soc import dm::*; #(
   assign s_apb_chip_ctrl_bus.pslverr = apb_chip_ctrl_master_pslverr_i;
 
   // My dummy vendor IP
-  dummy_top #() dummy_vip();
+  dummy_top #() dummy_vip ();
 
   // MY WIDE ALU IP
   AXI_BUS #(
@@ -996,5 +996,4 @@ module pulp_soc import dm::*; #(
        slave_valid <= slave_grant;
      end
    end
-
 endmodule
