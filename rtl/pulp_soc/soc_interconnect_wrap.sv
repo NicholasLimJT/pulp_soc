@@ -190,11 +190,13 @@ module soc_interconnect_wrap
     .AXI_DATA_WIDTH ( 32                                     ),
     .AXI_ID_WIDTH   ( pkg_soc_interconnect::AXI_ID_OUT_WIDTH ),
     .AXI_USER_WIDTH ( AXI_USER_WIDTH                         )
-  ) axi_slaves[2]();
-
+  ) axi_slaves[3]();
+  //increased to 3 as there are 3 slaves
+  
   `AXI_ASSIGN(axi_slave_plug, axi_slaves[0])
   `AXI_ASSIGN(axi_to_axi_lite_bridge, axi_slaves[1])
-
+  //added for wide_alu implementation
+  `AXI_ASSIGN(wide_alu_slave, axi_slaves[2])
   //Interconnect instantiation
   soc_interconnect #(
     // FC instructions, FC data, uDMA RX, uDMA TX, debug access, 4 four 64-bit

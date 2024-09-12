@@ -249,7 +249,16 @@ module pulp_soc import dm::*; #(
   output logic [NB_CORES-1:0]                                 cluster_dbg_irq_valid_o
 );
 
+  // My dummy vendor IP
   dummy_top #() dummy_vip();
+
+  // MY WIDE ALU IP
+  AXI_BUS #(
+    .AXI_ADDR_WIDTH ( 32                ),
+    .AXI_DATA_WIDTH ( 32                ),
+    .AXI_ID_WIDTH   ( AXI_ID_OUT_WIDTH   ),
+    .AXI_USER_WIDTH ( AXI_USER_WIDTH    )
+  ) s_wide_alu_bus ();
 
   localparam NB_L2_BANKS = `NB_L2_CHANNELS;
   //The L2 parameter do not influence the size of the memories. Change them in the l2_ram_multibank. This parameters
