@@ -230,7 +230,7 @@ module soc_peripherals
   `AXI_LITE_ASSIGN_FROM_RESP(axi_lite_slave, s_axi_lite_master_resp)
 
   // APB Slaves
-  localparam int unsigned NumAPBSlaves = 11;
+  localparam int unsigned NumAPBSlaves = 12;
   localparam addr_map_rule_t [NumAPBSlaves-1:0] APBAddrRanges = '{
     '{ idx: 0,  start_addr: `SOC_MEM_MAP_GPIO_START_ADDR,           end_addr: `SOC_MEM_MAP_GPIO_END_ADDR           },
     '{ idx: 1,  start_addr: `SOC_MEM_MAP_UDMA_START_ADDR,           end_addr: `SOC_MEM_MAP_UDMA_END_ADDR           },
@@ -242,7 +242,8 @@ module soc_peripherals
     '{ idx: 7,  start_addr: `SOC_MEM_MAP_HWPE_START_ADDR,           end_addr: `SOC_MEM_MAP_HWPE_END_ADDR           },
     '{ idx: 8,  start_addr: `SOC_MEM_MAP_VIRTUAL_STDOUT_START_ADDR, end_addr: `SOC_MEM_MAP_VIRTUAL_STDOUT_END_ADDR },
     '{ idx: 9,  start_addr: `SOC_MEM_MAP_DEBUG_START_ADDR,          end_addr: `SOC_MEM_MAP_DEBUG_END_ADDR          },
-    '{ idx: 10, start_addr: `SOC_MEM_MAP_CHIP_CTRL_START_ADDR,      end_addr: `SOC_MEM_MAP_CHIP_CTRL_END_ADDR      }};
+    '{ idx: 10, start_addr: `SOC_MEM_MAP_CHIP_CTRL_START_ADDR,      end_addr: `SOC_MEM_MAP_CHIP_CTRL_END_ADDR      },
+    '{ idx: 11, start_addr: `SOC_MEM_MAP_WIDE_ALU_START_ADDR        end_addr: `SOC_MEM_MAP_WIDE_ALU_END_ADDR      }};
 
   apb_req_t [NumAPBSlaves-1:0] s_apb_slaves_req;
   apb_resp_t [NumAPBSlaves-1:0] s_apb_slaves_resp;
